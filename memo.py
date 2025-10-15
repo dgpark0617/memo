@@ -31,3 +31,11 @@
 [ faith  ] know that we already received it. know that. 
 [ faith  ] how do you know your mother is your mother? 
 [ faith  ] baby never know mother is real mother or not. 
+
+
+[ final  ] seperation. caused by not knowing. 
+[ final  ] don't know that you already have that file. 
+[ final  ] don't know the parent's love
+[ final  ] don't know the rainbow is already in the light
+[ final  ] don't know the every sound is music for somebody else. 
+[ final  ] don't know that we already lived in the beautiful sky. 

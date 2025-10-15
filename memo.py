@@ -1,6 +1,6 @@
-[ TLDR   ]I was restirct his plan by my understanding
-[ TLDR   ]I was restrict his power by my reality 
-[ TLDR   ] don't do that. 
+[ TLDR   ] I was restirct his plan by my understanding
+[ TLDR   ] I was restrict his power by my reality 
+[ TLDR   ] everything is already with us. 
 
 [ title  ] do not block God's power with your reality. 
 [ intro  ] .cursorignore. can't see the file.  //  AI can't see the file in the folder. human can't see the rainbow in the light
@@ -22,7 +22,12 @@
 [ sound  ] piano in the subway. (창 9.13)
 [ sound  ] just a normal sound, could be blessing for somebody else. 
 
-[ sub-title ] Rainbow is in the light already. 
+[ title  ] Rainbow is in the light already. 
 [ sight  ] prism. input light > output rainbow. in our naked eyes. light looks like light. but, it has rainbow in it. 
 
-[ matter ] LHC. CERN
+[ faith  ] where is the love? 
+[ faith  ] where is God?
+[ faith  ] it is not what we achieve. it is given already. 
+[ faith  ] know that we already received it. know that. 
+[ faith  ] how do you know your mother is your mother? 
+[ faith  ] baby never know mother is real mother or not. 

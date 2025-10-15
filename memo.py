@@ -39,3 +39,4 @@
 [ final  ] don't know the rainbow is already in the light
 [ final  ] don't know the every sound is music for somebody else. 
 [ final  ] don't know that we already lived in the beautiful sky. 
+[ final  ] that make seperation. be together. 

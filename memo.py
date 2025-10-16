@@ -1,3 +1,14 @@
+[ speech order ] 
+10 ~ 15 intro : do not restrict God power by my reality.   
+15 ~ 20 step1 : .cursorignore  =  rainbow in the light
+20 ~ 25 step2 : time. satellite. overseas. worship. / time. peter(마 26.33) 
+25 ~ 30 step3 : location. mokpo mountain. seohyeon sky touch. / location. Jesus(마 14.25) water walk
+30 ~ 35 final : sound. high frequency. low frequency. / sound. piano in subway. 
+35 ~ 40 final : science. light. prism. rainbow. (창 9.13)
+40 ~ 45 final : people. sangsun. friend. daegun. friend. / people. onesimus. second son. peter
+45 ~ 50 final : song. where is the love?(2009). / (빌 1.15~18)
+
+
 [ TLDR   ] I was restirct his plan by my understanding
 [ TLDR   ] I was restrict his power by my reality 
 [ TLDR   ] everything is already with us. 

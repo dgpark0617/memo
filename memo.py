@@ -1,4 +1,27 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+word. light. come to world. people didn't notice. 
+
+.cursorignore  =  rainbow in the light
+location. Jesus(마 14.25) water walk
+seohyeon sky touch.
+sound. piano in subway. people. sangsun. friend. daegun. friend.
+science. light. prism. rainbow. (창 9.13)
+song. where is the love?(2009). / (빌 1.15~18)
+
+gurea. hwaumsa. zirisan. mountain in the cloud. jangkwan. kanghwado. during the rain, mountain in the cloud. 
+when we winning about rain, the sight that I was looking for is already there. 
+we can see the rainbow, after the rain. 
+
+Rainbow is in the light already. 
+prism. input light > output rainbow. in our naked eyes. light looks like light. but, it has rainbow in it. 
+
+lee un joo. br. morning QT. 10/10
+by good things and by bad things (빌 1.15~18)
+the song. where is the love?  the disappointment. that you feel. 
+the disappoint that you feel now. God plan.
+
+귀, 눈, 손
 마태 11.15
 마태 13. 9 
 계태  2. 7
@@ -23,13 +46,12 @@
 
 [ speech order ] 
 10 ~ 15 intro : do not restrict God power by my reality.   
-15 ~ 20 step1 : .cursorignore  =  rainbow in the light
+15 ~ 20 step1 : 
 20 ~ 25 step2 : time. satellite. overseas. worship. / time. peter(마 26.33) 
-25 ~ 30 step3 : location. mokpo mountain. seohyeon sky touch. / location. Jesus(마 14.25) water walk
-30 ~ 35 final : sound. high frequency. low frequency. / sound. piano in subway. 
-35 ~ 40 final : science. light. prism. rainbow. (창 9.13)
-40 ~ 45 final : people. sangsun. friend. daegun. friend. / people. onesimus. second son. peter
-45 ~ 50 final : song. where is the love?(2009). / (빌 1.15~18)
+25 ~ 30 step3 : location. mokpo mountain.  / 
+30 ~ 35 final : sound. high frequency. low frequency. /  
+40 ~ 45 final :  / people. onesimus. second son. peter
+45 ~ 50 final : 
 
 
 [ TLDR   ] I was restirct his plan by my understanding
@@ -55,9 +77,7 @@
 [ place  ] misunderstanding about location seperation. lee young do. golem. / the wall in front of you are exist just in your mind. 
 [ place  ] misunderstanding about the real place we lived in. seohyeon. want to touch blue sky during driving. but she actually live in it already. 
 
-[ place  ] gurea. hwaumsa. zirisan. mountain in the cloud. jangkwan. kanghwado. during the rain, mountain in the cloud. 
-[ place  ] when we winning about rain, the sight that I was looking for is already there. 
-[ point  ] we can see the rainbow, after the rain. 
+
 
 [ people ] onesimus(빌 1.11). once bad people. but changed after peter. 
 [ people ] second son(누 15.20). once betray his father. but, come back. 
@@ -69,8 +89,7 @@
 [ sound  ] piano in the subway. (창 9.13)
 [ sound  ] just a normal sound, could be blessing for somebody else. 
 
-[ title  ] Rainbow is in the light already. 
-[ sight  ] prism. input light > output rainbow. in our naked eyes. light looks like light. but, it has rainbow in it. 
+
 
 [ faith  ] where is the love? 
 [ faith  ] where is God?
@@ -89,10 +108,7 @@
 [ final  ] that make seperation. be together. 
 
 
-[ point  ] lee un joo. br. morning QT. 10/10
-[ point  ] by good things and by bad things (빌 1.15~18)
-[ point  ] the song. where is the love?  the disappointment. that you feel. 
-[ point  ] the disappoint that you feel now. God plan.
+
 
 
 사실은 그날 아침에 복작복작 자매랑 다툼. 

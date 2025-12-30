@@ -20,36 +20,28 @@ and the same origin word is used at samuel ha. 1.22 the song of bow.
 25-30. bow (keshet)
 when david heard that the jonadan died in the battle, he make the song. named bow. 
 read the bible. your love. 
+bow. jonadan. son of saul. friend of david. believer. 
+
+========================================================================================================
+30-35. aiming of bow is not direct. it's parabolic. 
 aiming. is different. not direct. its parabolic. which means. I'm not looking the target. I imagine it.
 sound arrow. jonadan. read the bible.  
 humor. toy bow. do you remember? I played it a lot. 
-
 let's think about the arrow. what he will think. at the top of his movemewnt? 
 during the aseceding he think he is aming the sun. or horizoe. or some target. 
 but after pass the top, now he sees the ground. and realized there is no target.
 he don't have ear. so, he cannot hear the yelling, calling of jonadan. 
 he think he is failure. but, his not. he is another type of sound arrow. to save. owner's love. 
 the most important mission in this entire shot. 
-
+========================================================================================================
+35-40. success or fail. decide by who? 
  pslam. 90.10. we 70. if strong 80. now I'm over 40. and I think I'm not that strong. 
  so, at my age 35. I clearly see my actual target. 
-
  questions. kid. what is success in your age? 
  youngs. what is success in your age? 
  adult. what is success in your age? 
-
  and what do we think the purpose of him when he shoot us to the world? 
-
  okay. 
- 
-
-
-bow. jonadan. son of saul. friend of david. believer. 
-
-========================================================================================================
-30-35. aiming of bow is not direct. it's parabolic. 
-========================================================================================================
-35-40. success or fail. decide by who? 
 ========================================================================================================
 40-45. String (David)
 ========================================================================================================

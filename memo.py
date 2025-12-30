@@ -20,10 +20,16 @@ and the same origin word is used at samuel ha. 1.22 the song of bow.
 25-30. bow (keshet)
 when david heard that the jonadan died in the battle, he make the song. named bow. 
 read the bible. your love. 
-aiming. is different. not direct. its parabolic. which means. I'm not looking the target. 
-sound arrow. jonadan. read the bible. 
-I imagine it. 
+aiming. is different. not direct. its parabolic. which means. I'm not looking the target. I imagine it.
+sound arrow. jonadan. read the bible.  
 humor. toy bow. do you remember? I played it a lot. 
+
+let's think about the arrow. what he will think. at the top of his movemewnt? 
+during the aseceding he think he is aming the sun. or horizoe. or some target. 
+but after pass the top, now he sees the ground. and realized there is no target.
+he don't have ear. so, he cannot hear the yelling, calling of jonadan. 
+he think he is failure. but, his not. he is another type of sound arrow. to save. owner's love. 
+the most important mission in this entire shot. 
 
 
 bow. jonadan. son of saul. friend of david. believer. 

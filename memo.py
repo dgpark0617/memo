@@ -31,6 +31,18 @@ he don't have ear. so, he cannot hear the yelling, calling of jonadan.
 he think he is failure. but, his not. he is another type of sound arrow. to save. owner's love. 
 the most important mission in this entire shot. 
 
+ pslam. 90.10. we 70. if strong 80. now I'm over 40. and I think I'm not that strong. 
+ so, at my age 35. I clearly see my actual target. 
+
+ questions. kid. what is success in your age? 
+ youngs. what is success in your age? 
+ adult. what is success in your age? 
+
+ and what do we think the purpose of him when he shoot us to the world? 
+
+ okay. 
+ 
+
 
 bow. jonadan. son of saul. friend of david. believer. 
 

@@ -41,15 +41,39 @@ the most important mission in this entire shot.
  youngs. what is success in your age? 
  adult. what is success in your age? 
  and what do we think the purpose of him when he shoot us to the world? 
- okay. 
 ========================================================================================================
 40-45. String (David)
+kinnor 
+boy of kinnor. for saul. 
+bow with string. kinnor with string. 
+samuel 23.1. at the last word of his life. describe him self as psamlist. 
+
 ========================================================================================================
 45-50. String (Piano)
+I thought that the piano is useless. 
+the young who played piano in the subway station so beautifully. 
+so, the song. is already there. but, I didn't know that (gajung)
+so, the target is already hitted. arrow didn't know that (yonadan)
+so, the rainbow is already there. rainbow in the cloud. but it said. the light. is rainbow. so means always.
+
+matteh 13.9 whoever has ears, let them hear. 
+romans 10.17 faith comes from hearing the message. and the message is heard through the word about christ. 
+romans 10.18 but I ask: did they not hear? of course they did. 
 ========================================================================================================
 50-55. String (Where is the love)
+In my youger agaes, about 20 years ago. when I'm not in believe rather and anti christ. 
+ this song is always in my mind. where is God? 
+
+now we can answer that question. 
+everywhere. 
+and why the world is still suffering? who need to fix this? 
 ========================================================================================================
 
+
+
+
+
+ 
 
 [ need to refine ]
 ========================================================================================================

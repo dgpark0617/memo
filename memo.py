@@ -1,3 +1,96 @@
+[ 2025.12.30 ] 
+========================================================================================================
+05-10. humor and purpose. 
+========================================================================================================
+10-15. rainbow (keshet)
+start with quiz to kids. where can we find rainbow? 
+========================================================================================================
+15-20. sunray > cloud > rain > rainbow > dry > disappear  
+people forget easily. remind me dear lord.(this time. is second time. korean lyrics okay. )
+========================================================================================================
+20-25. rainbow different paint 
+insided of the light, there is rainbow. inside of black, there is rainbow. 
+the light can be divided into rainbow and collected again as light.  resurrrection. 
+the paint can be black. but can not be divided as colors. death
+we see black. but he see the colors inside of us. 
+by the way, the orgin work of rainbow is keshet. both mean rainbow and bow. 
+not strange. because it is said rain + bow. 
+and the same origin word is used at samuel ha. 1.22 the song of bow. 
+========================================================================================================
+25-30. bow (keshet)
+when david heard that the jonadan died in the battle, he make the song. named bow. 
+read the bible. your love. 
+aiming. is different. not direct. its parabolic. which means. I'm not looking the target. 
+sound arrow. jonadan. read the bible. 
+I imagine it. 
+humor. toy bow. do you remember? I played it a lot. 
+
+
+bow. jonadan. son of saul. friend of david. believer. 
+
+========================================================================================================
+30-35. aiming of bow is not direct. it's parabolic. 
+========================================================================================================
+35-40. success or fail. decide by who? 
+========================================================================================================
+40-45. String (David)
+========================================================================================================
+45-50. String (Piano)
+========================================================================================================
+50-55. String (Where is the love)
+========================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 욥의 원망

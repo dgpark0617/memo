@@ -41,8 +41,108 @@ bow. jonadan. son of saul. friend of david. believer.
 ========================================================================================================
 
 
+[ need to refine ]
+========================================================================================================
+ gahyeon. forget her memory soon. 
+park bok su. sis.   remind me dear lord. 
+remind me remind me dear lord. 
 
 
+05-10. where is the love 2003. freshman in university. out of highschool. live in seoul alone. my university is chapple. went to army.  
+10-15. cheolwon. the vast horizion. don't remember exact date. but, after rain. in my eyes there is no rainbow. in the cloud.  
+15-20. and the opposite site. the huge size of rainbow appear. not many change to see that. rainbow size is different. 
+20-25. aat the end of eye sight, to the end of eye sight. where was it? what is the rainbow? 
+it is the sunray from the sun. as a light. but due to the light of prizm. it appears. 
+normal days. it is just a light. but in the early morning. its color is sea. and at the end of day its color is gold. 
+did't even know the color of our life. what color is it right now? 
+all of that is a light. it is not seperated. all of that is light. 
+
+
+color we think mix every color it goes black. 
+
+red, orange, gold, green, blue, navy, purple. and what? it is sad because of its color is purple now?
+no. it couldn't. before cloud the sunray is sunray. but, when we glimps the sunray through the tears. we can see the rainbow. 
+
+rainbow - dry - light again - rain - raionbow again
+
+
+colors - together - black - just balck. 
+
+or when every color gather all together it is then light. 
+so, rainbow after moisture. it goes nowhere. became light again. so, we easliy forget about what we really is. 
+I'm not just saying that a a sinner. but think about one. 
+
+I'm son of my father and mother. and grandson of my grandmother. brother of my sister. husband of my wife. 
+father of gahyeon, father of seohyeon. stranger to our pet jjanggu. in the church, strange wipping adult. 
+and children of father. who am I living today as? 
+it is new year. some silly question. 
+(keshet)
+
+keshet. .........> meaning also have keshet means bow. rainbow. bow. 
+
+the bow. is strange weapon. you know what? it is now like gun. 
+when yo shoot the bow, it make parabolic. which means. you are not aiming it to the target. 
+so, shoot. it. with that spring power. aiming some ideological target. and after that gone. realized that was not the real target. 
+after looing all its power. it changed its path. to teh direction. 
+it is my goal to penetrage the eagle? it is my goal to broke the armoter of the kight? 
+or it my goal is to give signal to whislt? make great fire? 
+
+no. your purpose is go high. and go down. rotten in the field. it is not kill the king an end war. 
+just goes like flow. do nothing. 
+
+a strong well shoot arrow. kill big aninal . we all do. big compnay. grearte achievement. 
+well  formed family. good compnay. beautiful husband and wife. how was it? 
+it said when you are strong goes 80. now I'm over 40. 
+if I'm arrow. now I'm seeing the ground. thought that I was aiming to the eagle. or aming to the king. 
+but, reality is ground. hitting the air. not helping. falling. failure. as a arrow.
+
+is it really? not really. 
+
+what was the target. to make him escape from the death. 
+let's get up and and see the great light from the heaven 
+are you in the dark? heads up. 
+
+
+patrida. pater. fatherland. 
+the original goal. ultimate goal. 
+
+so, we have tendency to think that we have some purpose. for each role. 
+rainbow. light > rain(prism) > color > dry > light. many roles as person > role has purpose > remember > forget
+only one thing left > wealth. power, reputation. personal goal. art masterpeice > 
+it is easy to think , if we are not able to reach achieve the purpose  of the role. as failure. 
+today, have you lived as Hanseo's father? Eunseo's fater? , or leader of the church? if not. it is failure. really?
+not really. I strongly believe that is view of person. not father. 
+david, jonadan. saul. samuel. saul is king made by peoples request to make king. 
+david is king chosen by god. jona 
+
+the bow of jonadan saved david. 
+the halrp of david eversaved jonathan. 
+
+the goal of jonadan. the purpose of his arrow is to save david. 
+arrow itself missed the target. the it penetrate the goal. 
+
+so ,the bow. gave him to the halrp. that string. now where. 
+let's come back to the first song. where is the love
+
+that is piano. it has string. you know what. that piano was there. 
+receiveing complain from me. such a failure. and what? save the world.
+change the world. people got me got me questining. where is the love? 
+the string is already inside of it. but, you don;t play the music. 
+
+
+jonathan shoot the arrow. to save david. arrow think he fail hit the target. boy think arrow miss the target. no, it hit the target. 
+jesus sacriface himself. to save all people. the world still same. boy think his will is not continued. no, it is already did. 
+
+where is the love? love is here. 
+he prepared us. hanseo. living sacrifice. 
+where is the love. I'm here. 
+
+
+where is the love. 2003    here it is 2024. 
+
+how world is not care about. before and after 
+
+====================================================================================================================
 
 
 

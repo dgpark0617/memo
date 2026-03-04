@@ -1,3 +1,119 @@
+2026.03.04
+
+
+[ 10 ] eat to live. that bastard. work for rotten food.  
+10 work to eat. that bastard. dog and horse. eat dog after rabbit hunting. work. only to struggle to continue life. collect endless. just about fear. lack of what. fear of losing. fear of lossing. 
+as a previous marketer, I surpirsed that genious effect of fear marketing of satan. satan make us to believe, death is final. there are no more. so, the best choice. enjoy. or avoid. 
+but to avoid death. we have to eat food. or to enjoy we all need food. but, strange. but, you don't know when to die. so, until then collect food. and collect money. like you will live forever. which is not. 
+satan told we will die. and die is final. and make us collect money and food as if we will live forever. so, people work. like dog. work like dog and spent like officer. but, i don't know. 
+so it called dog and horse effort. but, evenyualluy, eat dog after rabbit hunting. 
+
+[ 15] eat to live. that bastard. work for rotten food.  
+15 dead dog - there are two person. mbbs. and hasael. one day king called him to come. one day. king let him go. prince. and office. but, they also be like dog. and that bring me the memory. aof o dog die 
+dark house. covered with dustty cover. indised of the house. bad smell. smell of rotton. and death. dirty. wet. and fear. so hate each other. and they going to be die. and one day. decided to eat one of the dog. 
+the face of the dog. torched. but the thinkg catch my eyes is mouth of the dog. it was full of food. almost infront of throat. that means he eat food just before die. why can't he stop. and why he did not resist. 
+fight each other. caged in the rust cage. trying to eat dirty food. and collect it until death. that is also same . prisoner with death penaly
+
+[ 20 ] prisoners. make me think game theory. prisoners delima. two prisoners. they can choose. betray. and trust. both cooperate 3:3   both betray. 1:1  but one betray. 5:0
+so, not we have three turn. each. what do you think the best option for each prisoners? they both know that the game is about to end. why? it is because of the final selection. at the final. and 
+that make us nash equalibrium. and that made us para. that is nash equalibrium. and the paretto . 
+
+25 betray is best option. nash equalibrium. so the game goes like that. we all know the best is always cooperate. but, in narrow eye. we also know we are bad. so, betray. don't wanna die. and he will do the same. 
+that cause, both betray. and if you dont know when is the end? but end is end? always betray. isaisa. corinthos. hibrie. 
+wha.....  that sight. when dirty. in real life. I know the best choice is help each other. regardless of what. already enough. no need to collect more. best choice? goes to seoul station and then you need to see dirty part3
+yuda. students. peter. and us.
+
+30 win the tech by word
+one day, during comeback home, one brother prayes for me. win the tech by word. I thought. how? they are strong and stronger. and I'm getting weaker. I have to follow. study more. know more. 
+that is just change of status. power - money - study. all are same. fear. I think I'm in progress. but actually, I'm in still jail. who to win the battle by word. 
+when he caought from in the hills. he din't fight back. he caouht. he shows us. how to die. he finished that game of satan. by his death. make it meaningless. 
+win satan by the. and break the jail. how. by alive again. dead. fail. frustradted. could be. and again. that is our true power. not giving up. struggle to fight. not for live forever. but for something else. 
+
+35 tit for tat.  same happen in game. what if make it eternal. what is it is not finished after 3, or 10. goes eternal forever. than the logic changed. who is the winner. 
+good. teacher. forgive. forever. eye for eye. tooth for tooth. I don't understand how to make it perfect? by turn your chick? forgiving. let them know. for how? forever. if is not final game. 
+but you know? no we don;t know. how can we know if it is mortal or immortal. we can't know. so, what we do? we believe. even if there is know evidence. we believe. 
+esther. daniel. david. jesus. the cup. that give us a courage to believe. forgiving. 
+
+40 what to eat. the matter is not gone. our everyday life still need our choice and work. only with courage, nothing happen. anyhow, today again. satan asks us our choice. 
+mbbs. david run away. seems lose. he wait. and refuse good present. and choose david. he believed 
+hasael. knows the game. said king he will live. how to make it true then?. kill king. betray was his best choice. he believed. final game. 
+
+45 believe its final. - fear - world god. satan.   believe it eternal. - sacrifice. - jesus. 
+today again. choice in front of us. everyday. 
+for study. for job, for love, for marrigage, for business. for legacy. we can makie it simple. if it is based on our sacrifice. not a reward. 
+
+50 work to eat. our lord
+the original name of mbbs. said mrba. at that time. that was gloryus name. but later. that became shame. so they changed the name. mbbs. 
+in some point we was living  work to food. the rotten. food. food of fear.  and that was our glory. 
+work for eternal food. what work. is believe. and believe. love and teach. forgive. forever. that was our glory. 
+
+prisoner in jail. if he is really in jail. why jailer keep asking him the choice? if we are really in jail. he don't need to ask to keep us in jail. 
+we are not in the jail. and he don't have power to keep in jail. when we realize we can walk away. so, make us fear. 
+our everyday life is no longer work for rotten food. we got freed already. our everyday is work for eternal food. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [ 2025.12.30 ] 
 ========================================================================================================
 05-10. humor and purpose. 

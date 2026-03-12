@@ -1070,17 +1070,70 @@ def status_bar(player: Entity, turn: int) -> str:
         f"Turn {turn}  Floor {player.z+1}"
     )
 
-def hint_bar(player: Entity, entities: List[Entity]) -> str:
-    alive = [e for e in entities if e.alive and e.z == player.z]
-    if not alive:
-        return ">> n/s/e/w  look  listen  inv  weapons  map"
-    dist = min(abs(e.x - player.x) + abs(e.y - player.y) for e in alive)
-    if dist <= 1:
-        return ">> attack  kk  kk shoot  dodge  cover  run [dir]  use wolhon"
-    elif dist <= 5:
-        return ">> shoot [target]  shoot [dir](suppress)  cover  reload  look"
+def context_bar(player: Entity, entities: List[Entity],
+                ground_items: List[GroundItem], floors) -> str:
+    tiles_z = floors[player.z]
+    px, py, pz = player.x, player.y, player.z
+    lines = []
+
+    # EXITS
+    DIR_LABELS = [("north",(0,-1)),("south",(0,1)),("east",(1,0)),("west",(-1,0))]
+    exits = []
+    for dname, (dx, dy) in DIR_LABELS:
+        nx, ny = px + dx, py + dy
+        if 0 <= nx < MAP_W and 0 <= ny < MAP_H:
+            t = tiles_z[ny][nx].type
+            if t != T_WALL:
+                label = dname
+                if t == T_DOOR:    label += "(door)"
+                if t == T_STAIR_U: label += "(stair-up)"
+                if t == T_STAIR_D: label += "(stair-dn)"
+                exits.append(label)
+    cur = tiles_z[py][px].type
+    if cur == T_STAIR_U: exits.append("up(<)")
+    if cur == T_STAIR_D: exits.append("down(>)")
+    lines.append("Exits  : " + ("  ".join(exits) if exits else "blocked"))
+
+    # TARGETS
+    alive = [e for e in entities if e.alive and e.z == pz]
+    if alive:
+        targets = []
+        for e in sorted(alive, key=lambda e: abs(e.x-px)+abs(e.y-py)):
+            dist = abs(e.x - px) + abs(e.y - py)
+            hp_pct = e.hp / e.max_hp
+            cond = " !CRIT" if hp_pct < 0.25 else " -wnd" if hp_pct < 0.6 else ""
+            in_melee = dist <= 1
+            in_gun   = bool(player.gun and dist <= player.gun.range_)
+            tag = "[melee]" if in_melee else "[shoot]" if in_gun else f"[{dist}t-far]"
+            targets.append(f"{e.name}{cond}{tag}")
+        lines.append("Targets: " + "  ".join(targets))
     else:
-        return ">> n/s/e/w  look  listen  shoot [target]  map  inv"
+        lines.append("Targets: none")
+
+    # ITEMS
+    nearby = []
+    for gi in ground_items:
+        if gi.z != pz: continue
+        dist = abs(gi.x - px) + abs(gi.y - py)
+        if dist <= 2:
+            loc = "here" if dist == 0 else dir_text(px, py, gi.x, gi.y)
+            nearby.append(f"{gi.item.name}({loc})")
+    if nearby:
+        lines.append("Items  : " + "  ".join(nearby))
+
+    # QUICK HINT
+    alive_close = [e for e in alive if abs(e.x-px)+abs(e.y-py) <= 1]
+    alive_mid   = [e for e in alive if 1 < abs(e.x-px)+abs(e.y-py) <= (player.gun.range_ if player.gun else 0)]
+    if alive_close:
+        lines.append("Action : attack  kk  kk shoot  dodge  cover  use wolhon")
+    elif alive_mid:
+        lines.append("Action : shoot [name]  cover  reload  look  run [dir]")
+    elif nearby:
+        lines.append("Action : take [item]  look  listen  n/s/e/w")
+    else:
+        lines.append("Action : n/s/e/w  look  listen  map  inv  weapons  (? = help)")
+
+    return "\n".join(lines)
 
 # ─────────────────────────────────────────
 # INTRO / FACTION SELECT
@@ -1166,7 +1219,7 @@ def main():
             show_map = False
 
         # HINT
-        print(hint_bar(player, enemies))
+        print(context_bar(player, enemies, ground_items, floors))
         print()
 
         # INPUT

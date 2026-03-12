@@ -1044,21 +1044,30 @@ def recover_ap(player: Entity):
 # STATUS BAR
 # ─────────────────────────────────────────
 def status_bar(player: Entity, turn: int) -> str:
-    hp_f  = player.hp / player.max_hp
-    ap_f  = player.ap / player.max_ap
-    hp_b  = int(hp_f * 12)
-    ap_b  = int(ap_f * 12)
-    hp_col = "!" if hp_f < 0.3 else ""
-    gun   = player.gun.name if player.gun else "none"
+    hp_f = player.hp / player.max_hp
+    hp_cond = (
+        "CRITICAL" if hp_f < 0.2 else
+        "Wounded"  if hp_f < 0.5 else
+        "Bruised"  if hp_f < 0.8 else
+        "Fine"
+    )
+    ap_cond = (
+        "Exhausted" if player.ap <= 3 else
+        "Tired"     if player.ap <= 8 else
+        "Normal"
+    )
+    gun   = player.gun.name   if player.gun   else "none"
     melee = player.melee.name if player.melee else "none"
-    sta   = f" [{player.status}]" if player.status else ""
-    cov   = " [COVER]" if player.cover else ""
+    extras = []
+    if player.status: extras.append(player.status)
+    if player.cover:  extras.append("COVER")
+    extra_s = "  [" + ", ".join(extras) + "]" if extras else ""
     return (
-        f"HP {'█'*hp_b}{'░'*(12-hp_b)} {player.hp}/{player.max_hp}{hp_col}  "
-        f"AP {'█'*ap_b}{'░'*(12-ap_b)} {player.ap}/{player.max_ap}  "
-        f"Ammo:{player.ammo}  "
-        f"{gun} / {melee}{sta}{cov}  "
-        f"T:{turn}  F:{player.z+1}"
+        f"HP {player.hp}/{player.max_hp} ({hp_cond})  "
+        f"AP {player.ap}/{player.max_ap} ({ap_cond})  "
+        f"Ammo {player.ammo}  "
+        f"{gun} / {melee}{extra_s}  "
+        f"Turn {turn}  Floor {player.z+1}"
     )
 
 def hint_bar(player: Entity, entities: List[Entity]) -> str:

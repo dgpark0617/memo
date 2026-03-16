@@ -1,255 +1,287 @@
 """
-mlp.py - Pure Python MLP, Karpathy style
-No dependencies. Just math, random, os.
-~200 lines. Dataset + Autograd + MLP + Train + Inference.
+coin_mlp_fast.py - 코인 포지션 수익/손실 분류기
+Value 클래스 없음. gradient 수식 직접 계산.
+import: math, random 딱 2개.
+
+구조: 3 → 8 → 8 → 1 (sigmoid)
 """
 
 import math
 import random
-import os
 
-# ── 1. AUTOGRAD ENGINE ──────────────────────────────────────────────────────
+random.seed(42)
 
-class Value:
-    """Scalar value with gradient tracking."""
+# ── 1. ACTIVATIONS ───────────────────────────────────────────────────────────
 
-    def __init__(self, data, _children=(), _op=''):
-        self.data = data
-        self.grad = 0.0
-        self._backward = lambda: None
-        self._prev = set(_children)
-        self._op = _op
-
-    def __repr__(self):
-        return f"Value(data={self.data:.4f}, grad={self.grad:.4f})"
-
-    def __add__(self, other):
-        other = other if isinstance(other, Value) else Value(other)
-        out = Value(self.data + other.data, (self, other), '+')
-        def _backward():
-            self.grad += out.grad
-            other.grad += out.grad
-        out._backward = _backward
-        return out
-
-    def __mul__(self, other):
-        other = other if isinstance(other, Value) else Value(other)
-        out = Value(self.data * other.data, (self, other), '*')
-        def _backward():
-            self.grad += other.data * out.grad
-            other.grad += self.data * out.grad
-        out._backward = _backward
-        return out
-
-    def __pow__(self, exp):
-        out = Value(self.data ** exp, (self,), f'**{exp}')
-        def _backward():
-            self.grad += exp * (self.data ** (exp - 1)) * out.grad
-        out._backward = _backward
-        return out
-
-    def __neg__(self):         return self * -1
-    def __radd__(self, other): return self + other
-    def __rsub__(self, other): return Value(other) + (-self)
-    def __sub__(self, other):  return self + (-other)
-    def __rmul__(self, other): return self * other
-    def __truediv__(self, other): return self * other ** -1
-
-    def relu(self):
-        out = Value(max(0, self.data), (self,), 'relu')
-        def _backward():
-            self.grad += (out.data > 0) * out.grad
-        out._backward = _backward
-        return out
-
-    def tanh(self):
-        t = math.tanh(self.data)
-        out = Value(t, (self,), 'tanh')
-        def _backward():
-            self.grad += (1 - t ** 2) * out.grad
-        out._backward = _backward
-        return out
-
-    def exp(self):
-        e = math.exp(self.data)
-        out = Value(e, (self,), 'exp')
-        def _backward():
-            self.grad += e * out.grad
-        out._backward = _backward
-        return out
-
-    def log(self):
-        out = Value(math.log(self.data + 1e-9), (self,), 'log')
-        def _backward():
-            self.grad += (1.0 / (self.data + 1e-9)) * out.grad
-        out._backward = _backward
-        return out
-
-    def backward(self):
-        topo, visited = [], set()
-        def build(v):
-            if v not in visited:
-                visited.add(v)
-                for child in v._prev:
-                    build(child)
-                topo.append(v)
-        build(self)
-        self.grad = 1.0
-        for v in reversed(topo):
-            v._backward()
+def relu(x):     return max(0.0, x)
+def drelu(x):    return 1.0 if x > 0 else 0.0
+def sigmoid(x):  return 1.0 / (1.0 + math.exp(-max(-500, min(500, x))))
+def dsigmoid(s): return s * (1.0 - s)  # s = sigmoid(x) 이미 계산된 값
 
 
-# ── 2. NEURAL NETWORK ───────────────────────────────────────────────────────
+# ── 2. NETWORK INIT ──────────────────────────────────────────────────────────
 
-class Neuron:
-    def __init__(self, n_in, act='relu'):
-        self.w = [Value(random.uniform(-1, 1)) for _ in range(n_in)]
-        self.b = Value(0.0)
-        self.act = act
+def make_layer(n_in, n_out):
+    k = math.sqrt(2.0 / n_in)
+    W = [[random.gauss(0, k) for _ in range(n_in)] for _ in range(n_out)]
+    b = [0.0] * n_out
+    return W, b
 
-    def __call__(self, x):
-        out = sum((wi * xi for wi, xi in zip(self.w, x)), self.b)
-        if self.act == 'relu':  return out.relu()
-        if self.act == 'tanh':  return out.tanh()
-        return out  # linear
-
-    def parameters(self):
-        return self.w + [self.b]
-
-
-class Layer:
-    def __init__(self, n_in, n_out, act='relu'):
-        self.neurons = [Neuron(n_in, act) for _ in range(n_out)]
-
-    def __call__(self, x):
-        return [n(x) for n in self.neurons]
-
-    def parameters(self):
-        return [p for n in self.neurons for p in n.parameters()]
+def init_network(layer_sizes):
+    """layer_sizes = [3, 8, 8, 1]"""
+    layers = []
+    for i in range(len(layer_sizes) - 1):
+        W, b = make_layer(layer_sizes[i], layer_sizes[i+1])
+        layers.append((W, b))
+    return layers
 
 
-class MLP:
-    def __init__(self, n_in, hidden_sizes, n_out):
-        sizes = [n_in] + hidden_sizes + [n_out]
-        self.layers = []
-        for i in range(len(sizes) - 1):
-            act = 'linear' if i == len(sizes) - 2 else 'relu'
-            self.layers.append(Layer(sizes[i], sizes[i+1], act))
+# ── 3. FORWARD ───────────────────────────────────────────────────────────────
 
-    def __call__(self, x):
-        for layer in self.layers:
-            x = layer(x)
-        return x[0] if len(x) == 1 else x
+def forward(layers, x):
+    """
+    returns:
+      activations : 각 레이어 출력값 (relu 적용 후)
+      pre_acts    : 각 레이어 출력값 (활성화 함수 적용 전)
+    """
+    activations = [x]
+    pre_acts = []
 
-    def parameters(self):
-        return [p for l in self.layers for p in l.parameters()]
+    for i, (W, b) in enumerate(layers):
+        prev = activations[-1]
+        z = [sum(W[j][k] * prev[k] for k in range(len(prev))) + b[j]
+             for j in range(len(b))]
+        pre_acts.append(z)
 
-    def zero_grad(self):
-        for p in self.parameters():
-            p.grad = 0.0
+        # 마지막 레이어 sigmoid, 나머지 relu
+        if i == len(layers) - 1:
+            a = [sigmoid(v) for v in z]
+        else:
+            a = [relu(v) for v in z]
 
-    def param_count(self):
-        return len(self.parameters())
+        activations.append(a)
 
-
-# ── 3. LOSS ─────────────────────────────────────────────────────────────────
-
-def mse_loss(preds, targets):
-    return sum((p - t) ** 2 for p, t in zip(preds, targets)) * (1 / len(preds))
-
-def binary_cross_entropy(pred, target):
-    p = pred.tanh() * Value(0.5) + Value(0.5)  # sigmoid via tanh
-    return -(Value(target) * p.log() + Value(1 - target) * (Value(1.0) - p).log())
+    return activations, pre_acts
 
 
-# ── 4. DATASET ──────────────────────────────────────────────────────────────
+def predict(layers, x):
+    activations, _ = forward(layers, x)
+    return activations[-1][0]
 
-def make_xor_dataset():
-    """XOR: classic non-linearly separable problem."""
-    data = [
-        ([0.0, 0.0], 0.0),
-        ([0.0, 1.0], 1.0),
-        ([1.0, 0.0], 1.0),
-        ([1.0, 1.0], 0.0),
-    ]
-    return data
 
-def make_regression_dataset(n=50):
-    """y = 2x - 1 + noise"""
-    random.seed(42)
+# ── 4. BACKWARD ──────────────────────────────────────────────────────────────
+
+def backward(layers, activations, pre_acts, y_true):
+    """
+    Binary Cross Entropy + sigmoid 출력층 gradient 직접 계산.
+    returns: grads = [(dW, db), ...] 각 레이어별
+    """
+    n_layers = len(layers)
+    grads = [(None, None)] * n_layers
+
+    # 출력층 delta: BCE + sigmoid → d_loss/d_z = pred - y
+    pred = activations[-1][0]
+    delta = [pred - y_true]
+
+    for i in reversed(range(n_layers)):
+        W, b = layers[i]
+        a_in = activations[i]     # 이 레이어 입력
+        a_out = activations[i+1]  # 이 레이어 출력
+        z = pre_acts[i]
+
+        n_out = len(b)
+        n_in  = len(a_in)
+
+        # gradient 계산
+        dW = [[delta[j] * a_in[k] for k in range(n_in)] for j in range(n_out)]
+        db = [delta[j] for j in range(n_out)]
+        grads[i] = (dW, db)
+
+        # 이전 레이어로 delta 전파 (첫 레이어면 불필요)
+        if i > 0:
+            delta_prev = []
+            for k in range(n_in):
+                d = sum(W[j][k] * delta[j] for j in range(n_out))
+                d *= drelu(pre_acts[i-1][k])
+                delta_prev.append(d)
+            delta = delta_prev
+
+    return grads
+
+
+# ── 5. UPDATE ────────────────────────────────────────────────────────────────
+
+def update(layers, grads, lr):
+    for i, (W, b) in enumerate(layers):
+        dW, db = grads[i]
+        for j in range(len(b)):
+            for k in range(len(W[j])):
+                W[j][k] -= lr * dW[j][k]
+            b[j] -= lr * db[j]
+
+
+def zero_grads(n_layers, layer_sizes):
+    return [([[0.0]*layer_sizes[i] for _ in range(layer_sizes[i+1])],
+              [0.0]*layer_sizes[i+1])
+            for i in range(n_layers)]
+
+
+# ── 6. DATA ──────────────────────────────────────────────────────────────────
+
+def generate_data(n=300):
     data = []
     for _ in range(n):
-        x = random.uniform(-2, 2)
-        y = 2 * x - 1 + random.gauss(0, 0.1)
-        data.append(([x], y))
+        band_width = random.uniform(1.0, 15.0)
+        band_pos   = random.uniform(-10.0, 110.0)
+        slope      = random.uniform(-5.0, 5.0)
+
+        score = 0.0
+        score += slope * 0.4
+        score += (band_pos - 50) * 0.03
+        if band_width < 4.0 and band_pos > 70:  score += 1.5
+        if band_width < 4.0 and band_pos < 30:  score -= 1.5
+        if band_width > 10.0 and slope > 2.0:   score += 1.0
+        if band_width > 10.0 and slope < -2.0:  score -= 1.0
+        score += random.gauss(0, 0.8)
+
+        label = 1.0 if score > 0.5 else 0.0
+        data.append(([band_width, band_pos, slope], label))
     return data
 
 
-# ── 5. TRAIN ────────────────────────────────────────────────────────────────
+def normalize(data):
+    n_f = len(data[0][0])
+    mins = [min(d[0][i] for d in data) for i in range(n_f)]
+    maxs = [max(d[0][i] for d in data) for i in range(n_f)]
+    normed = [
+        ([(x[i]-mins[i])/(maxs[i]-mins[i]+1e-8) for i in range(n_f)], y)
+        for x, y in data
+    ]
+    return normed, mins, maxs
 
-def train(model, dataset, epochs=500, lr=0.01, task='regression', verbose=True):
+
+def norm_input(x, mins, maxs):
+    return [(x[i]-mins[i])/(maxs[i]-mins[i]+1e-8) for i in range(len(x))]
+
+
+# ── 7. LOSS ──────────────────────────────────────────────────────────────────
+
+def bce(pred, y):
+    pred = max(1e-7, min(1-1e-7, pred))
+    return -(y * math.log(pred) + (1-y) * math.log(1-pred))
+
+
+# ── 8. TRAIN ─────────────────────────────────────────────────────────────────
+
+def train(layers, layer_sizes, dataset, epochs=500, lr=0.05):
     for epoch in range(epochs):
-        total_loss = Value(0.0)
+        total_loss = 0.0
+        correct = 0
+
+        # 누적 gradient
+        acc_grads = zero_grads(len(layers), layer_sizes)
 
         for x, y in dataset:
-            pred = model(x)
-            if task == 'classification':
-                loss = binary_cross_entropy(pred, y)
-            else:
-                loss = (pred - Value(y)) ** 2
-            total_loss = total_loss + loss
+            activations, pre_acts = forward(layers, x)
+            pred = activations[-1][0]
 
-        total_loss = total_loss * Value(1 / len(dataset))
+            total_loss += bce(pred, y)
+            correct += 1 if (pred > 0.5) == (y > 0.5) else 0
 
-        model.zero_grad()
-        total_loss.backward()
+            grads = backward(layers, activations, pre_acts, y)
 
-        for p in model.parameters():
-            p.data -= lr * p.grad
+            # gradient 누적
+            for i in range(len(layers)):
+                dW, db = grads[i]
+                aW, ab = acc_grads[i]
+                for j in range(len(db)):
+                    for k in range(len(dW[j])):
+                        aW[j][k] += dW[j][k]
+                    ab[j] += db[j]
 
-        if verbose and (epoch % 100 == 0 or epoch == epochs - 1):
-            print(f"epoch {epoch:4d} | loss {total_loss.data:.6f}")
+        # 평균 gradient로 업데이트
+        n = len(dataset)
+        avg_grads = [
+            ([[acc_grads[i][0][j][k]/n for k in range(len(acc_grads[i][0][j]))]
+              for j in range(len(acc_grads[i][1]))],
+             [acc_grads[i][1][j]/n for j in range(len(acc_grads[i][1]))])
+            for i in range(len(layers))
+        ]
+        update(layers, avg_grads, lr)
 
-    return model
+        if epoch % 100 == 0 or epoch == epochs - 1:
+            acc = correct / len(dataset) * 100
+            avg_loss = total_loss / len(dataset)
+            print(f"epoch {epoch:4d} | loss {avg_loss:.4f} | acc {acc:.1f}%")
 
 
-# ── 6. TEST ─────────────────────────────────────────────────────────────────
+# ── 9. EVALUATE ──────────────────────────────────────────────────────────────
 
-def test_xor():
-    print("\n" + "="*50)
-    print("TEST 1: XOR Classification")
-    print("="*50)
-    random.seed(0)
-    model = MLP(n_in=2, hidden_sizes=[4, 4], n_out=1)
-    print(f"Parameters: {model.param_count()}")
-    dataset = make_xor_dataset()
-    train(model, dataset, epochs=1000, lr=0.1, task='classification')
-
-    print("\nResults:")
+def evaluate(layers, dataset, mins, maxs):
+    tp = fp = tn = fn = 0
     for x, y in dataset:
-        pred = model(x)
-        prob = math.tanh(pred.data) * 0.5 + 0.5
-        predicted = 1 if prob > 0.5 else 0
-        correct = "✓" if predicted == int(y) else "✗"
-        print(f"  input={x} | target={int(y)} | pred={prob:.3f} | {correct}")
+        xn = norm_input(x, mins, maxs)
+        p = predict(layers, xn)
+        pred = 1 if p > 0.5 else 0
+        actual = int(y)
+        if pred == 1 and actual == 1: tp += 1
+        elif pred == 1 and actual == 0: fp += 1
+        elif pred == 0 and actual == 0: tn += 1
+        else: fn += 1
 
-def test_regression():
-    print("\n" + "="*50)
-    print("TEST 2: Regression (y = 2x - 1)")
-    print("="*50)
-    random.seed(0)
-    model = MLP(n_in=1, hidden_sizes=[8, 8], n_out=1)
-    print(f"Parameters: {model.param_count()}")
-    dataset = make_regression_dataset(n=30)
-    train(model, dataset, epochs=500, lr=0.01, task='regression')
+    acc  = (tp+tn) / (tp+fp+tn+fn) * 100
+    prec = tp / (tp+fp+1e-8) * 100
+    rec  = tp / (tp+fn+1e-8) * 100
+    print(f"\n{'='*50}")
+    print(f"테스트 결과 ({len(dataset)}개)")
+    print(f"{'='*50}")
+    print(f"정확도 : {acc:.1f}%")
+    print(f"정밀도 : {prec:.1f}%")
+    print(f"재현율 : {rec:.1f}%")
+    print(f"TP={tp} FP={fp} TN={tn} FN={fn}")
 
-    print("\nSample predictions:")
-    test_points = [-2.0, -1.0, 0.0, 1.0, 2.0]
-    for x in test_points:
-        pred = model([x])
-        true = 2 * x - 1
-        print(f"  x={x:5.1f} | true={true:6.3f} | pred={pred.data:6.3f} | err={abs(pred.data - true):.3f}")
+
+# ── 10. MAIN ─────────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    test_xor()
-    test_regression()
+    print("코인 포지션 수익/손실 분류기 (fast ver.)")
+    print("import: math, random 딱 2개\n")
+
+    layer_sizes = [3, 8, 8, 1]
+
+    all_data = generate_data(n=400)
+    random.shuffle(all_data)
+    split = int(len(all_data) * 0.8)
+    train_raw = all_data[:split]
+    test_raw  = all_data[split:]
+
+    train_data, mins, maxs = normalize(train_raw)
+
+    layers = init_network(layer_sizes)
+    n_params = sum(len(b) + sum(len(w) for w in W) for W, b in layers)
+    print(f"파라미터 수  : {n_params}")
+    print(f"학습 데이터  : {len(train_data)}개")
+    print(f"테스트 데이터: {len(test_raw)}개\n")
+
+    train(layers, layer_sizes, train_data, epochs=500, lr=0.05)
+    evaluate(layers, test_raw, mins, maxs)
+
+    print(f"\n{'='*50}")
+    print("[ 시나리오 예측 ]")
+    print(f"{'='*50}")
+
+    scenarios = [
+        ("좁은밴드 + 상단 + 강한상승", 2.5,  95.0,  3.5),
+        ("넓은밴드 + 하단 + 강한하락", 12.0,  5.0, -4.0),
+        ("중간밴드 + 중앙 + 횡보",      6.0,  50.0,  0.2),
+        ("좁은밴드 + 하단 + 하락",      3.0,   8.0, -2.5),
+        ("넓은밴드 + 상단 + 강한상승", 11.0,  92.0,  4.0),
+    ]
+
+    for name, bw, bp, sl in scenarios:
+        xn = norm_input([bw, bp, sl], mins, maxs)
+        prob = predict(layers, xn)
+        result = "수익 예상 ✓" if prob > 0.5 else "손실 예상 ✗"
+        print(f"\n{name}")
+        print(f"  밴드폭={bw}% | 위치={bp}% | 기울기={sl}%")
+        print(f"  → {result} (확률: {prob:.3f})")

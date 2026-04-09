@@ -1,0 +1,89 @@
+// 업무 구분
+public class EntityType {
+    public static final String TASK_A = "TASK_A";
+    public static final String TASK_B = "TASK_B";
+    public static final String TASK_C = "TASK_C";
+
+    private EntityType() {}
+}
+
+// 액션 구분
+public class Action {
+    public static final String UPDATE = "UPDATE";
+    public static final String DELETE = "DELETE";
+
+    private Action() {}
+}
+
+@Component
+public class DataChecker {
+
+    public void check(String entityType, String action, Object entity) {
+
+        switch (entityType) {
+            case EntityType.TASK_A -> checkTaskA(action, (TaskA) entity);
+            case EntityType.TASK_B -> checkTaskB(action, (TaskB) entity);
+            case EntityType.TASK_C -> checkTaskC(action, (TaskC) entity);
+            default -> throw new BusinessException("알 수 없는 업무 유형: " + entityType);
+        }
+    }
+
+    private void checkTaskA(String action, TaskA entity) {
+        switch (action) {
+            case Action.UPDATE -> {
+                requireStatus(entity.getStatus(), "DRAFT", "RETURNED");
+            }
+            case Action.DELETE -> {
+                requireStatus(entity.getStatus(), "DRAFT");
+            }
+        }
+    }
+
+    private void checkTaskB(String action, TaskB entity) {
+        switch (action) {
+            case Action.UPDATE -> {
+                requireStatus(entity.getStatus(), "DRAFT", "RETURNED");
+                requireBeforeDeadline(entity.getDeadline());
+            }
+            case Action.DELETE -> {
+                requireStatus(entity.getStatus(), "DRAFT");
+            }
+        }
+    }
+
+    private void checkTaskC(String action, TaskC entity) {
+        switch (action) {
+            case Action.UPDATE -> {
+                requireStatus(entity.getStatus(), "DRAFT");
+            }
+            case Action.DELETE -> {
+                requireStatus(entity.getStatus(), "DRAFT");
+                requireChildEmpty(entity.getChildCount());
+            }
+        }
+    }
+
+    // ── 공통 체크 메서드 ──
+
+    private void requireStatus(String current, String... allowed) {
+        if (!Set.of(allowed).contains(current)) {
+            throw new BusinessException("현재 상태에서는 불가합니다: " + current);
+        }
+    }
+
+    private void requireBeforeDeadline(LocalDate deadline) {
+        if (deadline != null && LocalDate.now().isAfter(deadline)) {
+            throw new BusinessException("마감일이 지나 불가합니다.");
+        }
+    }
+
+    private void requireChildEmpty(int childCount) {
+        if (childCount > 0) {
+            throw new BusinessException("하위 데이터가 존재하여 삭제 불가합니다.");
+        }
+    }
+}
+
+// 서비스에서 사용
+dataChecker.check(EntityType.TASK_A, Action.UPDATE, entity);
+dataChecker.check(EntityType.TASK_A, Action.DELETE, entity);

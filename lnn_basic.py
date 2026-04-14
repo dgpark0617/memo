@@ -1,78 +1,151 @@
-import numpy as np  # 수치 계산을 위한 numpy 라이브러리 사용
+import numpy as np  # 수치 계산 라이브러리
 
 # =========================
-# 1. 데이터 생성 (가격 형태)
+# 1. 랜덤 1분봉 데이터 생성
 # =========================
-t = np.linspace(0, 10, 500)  # 0~10 구간을 500개로 나눈 시간축 생성
-price = np.cumsum(np.sin(t)) + 100  # 사인파를 누적합하여 실제 가격처럼 보이게 만들고 100을 더해 양수 유지
+def generate_data(n=500):  # n개의 캔들 생성
+    price = 100  # 초기 가격
+    ohlcv = []  # OHLCV 저장 리스트
+    delta_list = []  # delta 저장
+    intensity_list = []  # intensity 저장
 
-# =========================
-# 2. 모델 클래스 정의
-# =========================
-class SimpleLNN:  # LNN의 핵심 개념을 단순화한 모델 클래스 정의
+    for _ in range(n):  # n번 반복
+        change = np.random.randn() * 0.5  # 랜덤 가격 변화
 
-    def __init__(self):  # 클래스 초기화 함수
-        self.w = np.random.randn()  # 학습될 파라미터 w를 랜덤값으로 초기화
+        open_p = price  # 시가
+        close_p = price + change  # 종가
 
-    def sigmoid(self, x):  # 시그모이드 함수 정의 (0~1 사이 값으로 변환)
-        return 1 / (1 + np.exp(-x))  # 시그모이드 계산식
+        high_p = max(open_p, close_p) + abs(np.random.randn()) * 0.2  # 고가
+        low_p  = min(open_p, close_p) - abs(np.random.randn()) * 0.2  # 저가
 
-    def forward(self, data):  # 입력 데이터를 받아 예측을 수행하는 함수
-        h = data[0]  # 초기 상태값을 첫 데이터로 설정
-        outputs = []  # 각 시점의 상태값을 저장할 리스트
+        volume = abs(np.random.randn()) * 10  # 거래량
 
-        for x in data:  # 데이터 전체를 순회하면서
-            dt = self.sigmoid(self.w * abs(x - h))  # 현재 상태와 입력의 차이를 기반으로 적응형 반응 속도 계산
-            h = h + dt * (x - h)  # 상태를 업데이트 (LNN의 핵심 구조)
-            outputs.append(h)  # 업데이트된 상태를 결과 리스트에 추가
+        delta = np.random.randn() * volume  # 매수/매도 힘
+        intensity = abs(np.random.randn()) * 10  # 체결 강도
 
-        return np.array(outputs)  # 결과를 numpy 배열로 변환하여 반환
+        ohlcv.append([open_p, high_p, low_p, close_p, volume])  # 저장
+        delta_list.append(delta)
+        intensity_list.append(intensity)
 
-    def loss(self, pred, target):  # 손실 함수 정의 (평균제곱오차)
-        return np.mean((pred - target) ** 2)  # 예측값과 실제값의 차이를 제곱하여 평균 계산
+        price = close_p  # 다음 캔들을 위해 가격 갱신
 
-    def train(self, data, epochs=200, lr=0.01):  # 모델을 학습시키는 함수
-        for epoch in range(epochs):  # 지정한 epoch 수만큼 반복 학습 수행
-            pred = self.forward(data)  # 현재 파라미터로 전체 데이터 예측 수행
-            loss = self.loss(pred[:-1], data[1:])  # 다음 시점 예측을 기준으로 손실 계산
+    return np.array(ohlcv), np.array(delta_list), np.array(intensity_list)
 
-            eps = 1e-5  # 수치 미분을 위한 아주 작은 값 설정
-            original_w = self.w  # 현재 파라미터를 임시로 저장
-
-            self.w = original_w + eps  # 파라미터를 미세하게 증가시켜
-            pred_eps = self.forward(data)  # 다시 예측 수행
-            loss_eps = self.loss(pred_eps[:-1], data[1:])  # 증가된 상태에서의 손실 계산
-
-            grad = (loss_eps - loss) / eps  # 수치 미분을 이용해 기울기(gradient) 계산
-
-            self.w = original_w - lr * grad  # 기울기를 이용해 파라미터 업데이트 (경사하강법)
-
-            if epoch % 50 == 0:  # 50 epoch마다 학습 상태 출력
-                print(f"epoch {epoch}, loss: {loss:.6f}, w: {self.w:.4f}")  # 현재 손실과 파라미터 값 출력
-
-    def save(self, path="lnn_model.npy"):  # 모델 저장 함수
-        np.save(path, self.w)  # 현재 학습된 파라미터 w를 파일로 저장
-
-    def load(self, path="lnn_model.npy"):  # 모델 불러오기 함수
-        self.w = np.load(path)  # 저장된 파일에서 파라미터를 불러와 적용
 
 # =========================
-# 3. 모델 생성 및 학습
+# 2. Feature 생성
 # =========================
-model = SimpleLNN()  # 모델 객체 생성
-model.train(price)  # 생성된 가격 데이터를 이용해 모델 학습 수행
+def build_features(ohlcv, delta, intensity):
+    O = ohlcv[:, 0]  # 시가
+    H = ohlcv[:, 1]  # 고가
+    L = ohlcv[:, 2]  # 저가
+    C = ohlcv[:, 3]  # 종가
+    V = ohlcv[:, 4]  # 거래량
+
+    range_ = H - L  # 전체 변동폭
+    body = C - O  # 몸통
+
+    upper_wick = H - np.maximum(O, C)  # 윗꼬리
+    lower_wick = np.minimum(O, C) - L  # 아래꼬리
+
+    eps = 1e-6  # 0 나눗셈 방지
+
+    body_ratio = body / (range_ + eps)  # 몸통 비율
+    wick_ratio = (upper_wick + lower_wick) / (range_ + eps)  # 꼬리 비율
+
+    delta_ratio = delta / (V + eps)  # 방향성 정규화
+
+    features = np.stack([
+        O, H, L, C, V,
+        range_,
+        body,
+        upper_wick,
+        lower_wick,
+        body_ratio,
+        wick_ratio,
+        delta,
+        delta_ratio,
+        intensity
+    ], axis=1)
+
+    return features
+
 
 # =========================
-# 4. 모델 저장
+# 3. LNN 모델
 # =========================
-model.save()  # 학습된 모델을 파일로 저장
+class SimpleLNN:
+    def __init__(self, input_dim):
+        self.w = np.random.randn(input_dim)  # feature별 weight
+
+    def sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))  # 시그모이드
+
+    def forward(self, X):
+        h = X[0, 3]  # 초기 상태 (첫 close)
+        outputs = []
+
+        for x in X:
+            score = np.dot(self.w, x)  # feature 가중합
+            dt = self.sigmoid(score)  # adaptive 반응 속도
+
+            h = h + dt * (x[3] - h)  # 상태 업데이트
+            outputs.append(h)
+
+        return np.array(outputs)
+
+    def loss(self, pred, target):
+        return np.mean((pred - target) ** 2)  # MSE
+
+    def train(self, X, epochs=200, lr=0.001):
+        target = X[:, 3]  # close 기준 예측
+
+        for epoch in range(epochs):
+            pred = self.forward(X)
+            loss = self.loss(pred[:-1], target[1:])
+
+            grad = np.zeros_like(self.w)
+            eps = 1e-5
+
+            for i in range(len(self.w)):
+                original = self.w[i]
+
+                self.w[i] = original + eps
+                pred_eps = self.forward(X)
+                loss_eps = self.loss(pred_eps[:-1], target[1:])
+
+                grad[i] = (loss_eps - loss) / eps
+                self.w[i] = original
+
+            self.w -= lr * grad
+
+            if epoch % 50 == 0:
+                print(f"epoch {epoch}, loss: {loss:.6f}")
+
+    def save(self, path="lnn_model.npy"):
+        np.save(path, self.w)
+
+    def load(self, path="lnn_model.npy"):
+        self.w = np.load(path)
+
 
 # =========================
-# 5. 모델 불러오기 및 재사용
+# 4. 실행
 # =========================
-model2 = SimpleLNN()  # 새로운 모델 객체 생성
-model2.load()  # 저장된 파라미터를 불러와 적용
+ohlcv, delta, intensity = generate_data()  # 데이터 생성
+X = build_features(ohlcv, delta, intensity)  # feature 생성
 
-pred = model2.forward(price)  # 불러온 모델로 동일 데이터에 대해 예측 수행
+model = SimpleLNN(input_dim=X.shape[1])  # 모델 생성
+model.train(X)  # 학습
 
-print("Loaded model weight:", model2.w)  # 불러온 모델의 파라미터 값 출력
+model.save()  # 저장
+
+# =========================
+# 5. 재사용
+# =========================
+model2 = SimpleLNN(input_dim=X.shape[1])
+model2.load()
+
+pred = model2.forward(X)
+
+print("Loaded weight:", model2.w)

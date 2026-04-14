@@ -1,55 +1,43 @@
 import numpy as np
 
-def make_data(speed=1.0, n=200):
-    t = np.linspace(0, 10, n)
-    return np.sin(t * speed)
+# 데이터: 같은 파형인데 속도만 다름
+t = np.linspace(0, 10, 200)
+slow = np.sin(t)        # 느림 (학습했다고 가정)
+fast = np.sin(t * 3)    # 빠름 (새로운 상황)
 
-train = make_data(1.0)
-test  = make_data(3.0)
+# 1. "기존 방식" (고정 반응 = 둔함)
+def fixed_model(data):
+    out = []
+    for i in range(len(data)):
+        if i == 0:
+            out.append(data[i])
+        else:
+            # 과거 평균 → 느리게 반응
+            out.append(0.9 * out[-1] + 0.1 * data[i])
+    return np.array(out)
 
+# 2. "LNN 느낌" (상황에 따라 반응 속도 바뀜)
+def adaptive_model(data):
+    out = []
+    h = 0
+    for x in data:
+        # 변화가 크면 빠르게 따라감
+        speed = abs(x - h)
 
+        # 핵심: 반응 속도가 계속 변함
+        dt = 0.1 + 0.9 * speed
 
-______
+        h = h + dt * (x - h)
+        out.append(h)
+    return np.array(out)
 
+# 실행
+fixed_fast = fixed_model(fast)
+adapt_fast = adaptive_model(fast)
 
-
-
-def fixed_step_predict(data, window=10):
-    preds = []
-    for i in range(len(data)-window):
-        preds.append(np.mean(data[i:i+window]))
-    return np.array(preds)
-
-pred_train_fixed = fixed_step_predict(train)
-pred_test_fixed  = fixed_step_predict(test)
-
+# 오차 비교
 def mse(a, b):
     return np.mean((a - b)**2)
 
-print("Fixed model train:", mse(pred_train_fixed, train[10:]))
-print("Fixed model test :", mse(pred_test_fixed, test[10:]))
-
-
-
-
-_______
-
-
-
-
-def lnn_like_predict(data, dt=0.1):
-    h = 0.0
-    preds = []
-
-    for x in data:
-        dh = (x - h)          # 상태가 입력을 따라감
-        h = h + dt * dh       # continuous update
-        preds.append(h)
-
-    return np.array(preds)
-
-pred_train_lnn = lnn_like_predict(train)
-pred_test_lnn  = lnn_like_predict(test)
-
-print("LNN-like train:", mse(pred_train_lnn, train))
-print("LNN-like test :", mse(pred_test_lnn, test))
+print("고정 모델 오차:", mse(fixed_fast, fast))
+print("적응 모델 오차:", mse(adapt_fast, fast))
